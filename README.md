@@ -1,0 +1,1 @@
+docker run -d -e AZP_URL=https://dev.azure.com/{ORGANIZATION} -e AZP_TOKEN={PERSONAL_ACCESS_TOKEN} -e AZP_AGENT_NAME={AGENT_NAME} dockeragent:latest
