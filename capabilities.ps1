@@ -7,9 +7,10 @@ $packages = @(
 'nodejs --version=16.16.0',
 'nodejs-lts',
 'azure-cli',
-'azurepowershell',
+'az.powershell'
 'bicep',
-'git'
+'git',
+'azcopy10'
 )
 
 foreach ($package in $packages)
