@@ -14,7 +14,7 @@ RUN powershell -Command ./chocolatey-install.ps1
 RUN powershell -Command Remove-Item -Force chocolatey-install.ps1
 
 WORKDIR /cap
-COPY *_capabilities.ps1 .
+COPY capabilities/ .
 
 RUN powershell -Command ./basic-cli-capabilities.ps1
 RUN powershell -Command ./dotnet-build-capabilities.ps1
