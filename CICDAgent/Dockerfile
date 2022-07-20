@@ -24,6 +24,8 @@ RUN powershell -Command ./azure-deployment-capabilities.ps1
 
 USER ContainerAdministrator
 
+RUN powershell -Command [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+RUN powershell -Command Install-PackageProvider -Name NuGet
 RUN powershell -Command Install-Module -Name SqlServer -Scope AllUsers -Force
 
 USER ContainerUser
