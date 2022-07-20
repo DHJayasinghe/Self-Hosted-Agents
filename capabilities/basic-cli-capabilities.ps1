@@ -1,5 +1,5 @@
 $packages = @(
-  'powershell-core',
+  # 'powershell-core',
   'git'
 )
 
