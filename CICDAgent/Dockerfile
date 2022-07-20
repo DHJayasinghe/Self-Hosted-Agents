@@ -1,6 +1,6 @@
 # escape=`
 
-FROM  mcr.microsoft.com/windows/servercore:ltsc2022
+FROM  mcr.microsoft.com/windows/servercore:ltsc2019
 
 RUN powershell -Command`
         $ErrorActionPreference = 'Stop'; `
