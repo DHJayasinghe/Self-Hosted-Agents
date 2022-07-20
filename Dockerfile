@@ -2,6 +2,8 @@
 
 FROM  mcr.microsoft.com/powershell:7.2-nanoserver-ltsc2022
 
+USER ContainerAdministrator
+
 RUN pwsh -Command `
         $ErrorActionPreference = 'Stop'; `
         $ProgressPreference = 'SilentlyContinue'; `
