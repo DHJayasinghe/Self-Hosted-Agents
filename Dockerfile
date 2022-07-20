@@ -2,7 +2,7 @@
 
 FROM  mcr.microsoft.com/powershell:7.2-nanoserver-ltsc2022
 
-RUN pwsh `
+RUN pwsh -Command `
         $ErrorActionPreference = 'Stop'; `
         $ProgressPreference = 'SilentlyContinue'; `
         Invoke-WebRequest `
@@ -11,7 +11,7 @@ RUN pwsh `
             -OutFile chocolatey-install.ps1
 
 RUN pwsh ./chocolatey-install.ps1
-RUN pwsh Remove-Item -Force chocolatey-install.ps1
+RUN pwsh -Command Remove-Item -Force chocolatey-install.ps1
 
 WORKDIR /cap
 COPY capabilities/ .
