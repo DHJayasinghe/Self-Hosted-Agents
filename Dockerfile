@@ -1,6 +1,6 @@
 # escape=`
 
-FROM mcr.microsoft.com/windows/nanoserver:ltsc2022
+FROM  mcr.microsoft.com/powershell:7.2-nanoserver-ltsc2022
 
 RUN powershell -Command `
         $ErrorActionPreference = 'Stop'; `
