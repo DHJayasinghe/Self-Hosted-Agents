@@ -22,7 +22,7 @@ jobs:
         password: ${{ secrets.DOCKER_PASSWORD }}
         
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag hasitha2kandy/dockeragent:latest
+      run: docker build . --file CICDAgent/Dockerfile --tag hasitha2kandy/dockeragent:latest
       
     - name: Docker Push
       run: docker push hasitha2kandy/dockeragent
