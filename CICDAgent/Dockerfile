@@ -21,6 +21,14 @@ RUN powershell -Command ./dotnet-build-capabilities.ps1
 RUN powershell -Command ./npm-build-capabilities.ps1
 RUN powershell -Command ./azure-deployment-capabilities.ps1
 
+
+USER ContainerAdministrator
+
+RUN Install-Module -Name SqlServer -Scope AllUsers -Force
+
+USER ContainerUser
+
+
 WORKDIR /azp
 COPY ./start.ps1 .
 
