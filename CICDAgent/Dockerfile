@@ -24,7 +24,7 @@ RUN powershell -Command ./azure-deployment-capabilities.ps1
 
 USER ContainerAdministrator
 
-RUN Install-Module -Name SqlServer -Scope AllUsers -Force
+RUN powershell -Command Install-Module -Name SqlServer -Scope AllUsers -Force
 
 USER ContainerUser
 
