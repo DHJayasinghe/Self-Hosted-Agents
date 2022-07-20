@@ -1,4 +1,4 @@
-$packages = @( =
+$packages = @( 
   'dotnet-6.0-sdk',
   'dotnetcore-sdk'
 )
