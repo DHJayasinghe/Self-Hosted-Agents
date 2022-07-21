@@ -25,7 +25,7 @@ USER ContainerAdministrator
 
 RUN powershell -Command ./azure-deployment-capabilities.ps1
 
-USER ContainerUser
+# USER ContainerUser
 
 
 WORKDIR /azp
