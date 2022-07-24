@@ -17,6 +17,7 @@ COPY ./capabilities/ .
 
 RUN powershell -Command ./npm-build-capabilities.ps1
 RUN powershell -Command ./dotnet-build-capabilities.ps1
+RUN powershell -Command ./azure-deployment-capabilities.ps1
 
 FROM  $target
 
@@ -28,13 +29,13 @@ ARG src="C:\Program Files\dotnet/"
 ARG target="C:\Program Files\dotnet/"
 COPY --from=installer ${src} ${target}
 
-ARG src="C:\Windows\py.exe"
-ARG target="C:\Windows\py.exe"
+ARG src="C:\Program Files (x86)\Microsoft SDKs\Azure\CLI2/"
+ARG target="C:\Program Files\azure-cli/"
 COPY --from=installer ${src} ${target}
 
 USER ContainerAdministrator
-RUN setx /M PATH "%PATH%C:\Program Files\nodejs\;C:\Program Files\dotnet\"
-# USER ContainerUser
+RUN setx /M PATH "%PATH%C:\Program Files\nodejs\;C:\Program Files\dotnet\;C:\Program Files\azure-cli\wbin/"
+USER ContainerUser
 
 SHELL ["pwsh", "-c", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
 
