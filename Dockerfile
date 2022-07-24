@@ -1,32 +1,41 @@
 # escape=`
+ARG core=mcr.microsoft.com/windows/servercore:ltsc2019
+ARG target=mcr.microsoft.com/powershell:7.2-nanoserver-ltsc2022
 
-FROM  mcr.microsoft.com/windows/servercore:ltsc2022
+FROM $core as installer
 
-RUN powershell -Command`
-        $ErrorActionPreference = 'Stop'; `
-        $ProgressPreference = 'SilentlyContinue'; `
-        Invoke-WebRequest `
-            -UseBasicParsing `
-            -Uri https://chocolatey.org/install.ps1 `
-            -OutFile chocolatey-install.ps1
+SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
+
+RUN powershell -Command Invoke-WebRequest `
+    -UseBasicParsing `
+    -Uri https://chocolatey.org/install.ps1 `
+    -OutFile chocolatey-install.ps1
 
 RUN powershell -Command ./chocolatey-install.ps1
-RUN powershell -Command Remove-Item -Force chocolatey-install.ps1
 
-WORKDIR /cap
-COPY capabilities/ .
+COPY ./capabilities/ .
 
-RUN powershell -Command ./basic-cli-capabilities.ps1
-RUN powershell -Command ./dotnet-build-capabilities.ps1
 RUN powershell -Command ./npm-build-capabilities.ps1
+RUN powershell -Command ./dotnet-build-capabilities.ps1
+
+FROM  $target
+
+ARG src="C:\Program Files\nodejs\node.exe"
+ARG target="C:\Program Files\nodejs/"
+COPY --from=installer ${src} ${target}
+
+ARG src="C:\Program Files\dotnet/"
+ARG target="C:\Program Files\dotnet/"
+COPY --from=installer ${src} ${target}
+
+ARG src="C:\Windows\py.exe"
+ARG target="C:\Windows\py.exe"
+COPY --from=installer ${src} ${target}
 
 USER ContainerAdministrator
+RUN setx /M PATH "%PATH%C:\Program Files\nodejs\;C:\Program Files\dotnet\"
+# USER ContainerUser
 
-RUN powershell -Command ./azure-deployment-capabilities.ps1
+SHELL ["pwsh", "-c", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
 
-USER ContainerUser
-
-WORKDIR /azp
-COPY start.ps1 .
-
-CMD powershell -Command ./start.ps1
+ENTRYPOINT [ "cmd","/c ping -t localhost > NUL" ]
