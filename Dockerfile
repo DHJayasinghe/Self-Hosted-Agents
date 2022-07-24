@@ -1,6 +1,6 @@
 # escape=`
 ARG core=mcr.microsoft.com/windows/servercore:ltsc2019
-ARG target=mcr.microsoft.com/powershell:7.2-nanoserver-ltsc2022
+ARG target=mcr.microsoft.com/powershell:7.2-nanoserver-1809
 
 FROM $core as installer
 
