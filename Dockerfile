@@ -35,7 +35,7 @@ COPY --from=installer ${src} ${target}
 
 USER ContainerAdministrator
 RUN setx /M PATH "%PATH%C:\Program Files\nodejs\;C:\Program Files\dotnet\;C:\Program Files\azure-cli\wbin/"
-USER ContainerUser
+# USER ContainerUser
 
 SHELL ["pwsh", "-c", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
 
