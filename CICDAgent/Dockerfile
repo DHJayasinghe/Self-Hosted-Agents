@@ -21,7 +21,7 @@ RUN powershell -Command ./dotnet-build-capabilities.ps1
 RUN powershell -Command ./npm-build-capabilities.ps1
 
 
-USER ContainerAdministrator
+# USER ContainerAdministrator
 
 RUN powershell -Command ./azure-deployment-capabilities.ps1
 
