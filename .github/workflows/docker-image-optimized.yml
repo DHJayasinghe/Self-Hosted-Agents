@@ -21,4 +21,4 @@ jobs:
       run: docker build . --file Dockerfile --tag hasitha2kandy/dockeragent-optimized:latest
       
     - name: Docker Push
-      run: docker push hasitha2kandy/dockeragent
+      run: docker push hasitha2kandy/dockeragent-optimized:latest
