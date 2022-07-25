@@ -7,10 +7,9 @@ SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPref
 RUN powershell -Command Invoke-WebRequest `
     -UseBasicParsing `
     -Uri https://chocolatey.org/install.ps1 `
-    -OutFile chocolatey-install.ps1
-
-RUN powershell -Command ./chocolatey-install.ps1
-RUN powershell -Command Remove-Item -Force chocolatey-install.ps1
+    -OutFile chocolatey-install.ps1; `
+    ./chocolatey-install.ps1; `
+    Remove-Item -Force chocolatey-install.ps1
 
 WORKDIR /cap
 COPY ./capabilities/ .
