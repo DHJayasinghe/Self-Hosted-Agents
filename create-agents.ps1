@@ -1,0 +1,1 @@
+az deployment group create --resource-group 'devops-rg' --template-file deploy.bicep
