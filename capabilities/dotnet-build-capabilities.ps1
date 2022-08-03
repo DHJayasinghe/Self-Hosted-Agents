@@ -4,11 +4,7 @@ $packages = @(
 )
 
 foreach ($package in $packages) {
-  Invoke-Expression -Command "choco install $package -y"
+  Invoke-Expression -Command "choco install $package -y --no-progress"
 }
 
-# Delete everything in the dotnet folder that's not needed in the SDK layer but will instead be derived from base layers
-# Get-ChildItem -Exclude 'LICENSE.txt', 'ThirdPartyNotices.txt', 'packs', 'sdk', 'sdk-manifests', 'templates', 'shared' -Path 'C:\Program Files\dotnet' `
-# | Remove-Item -Force -Recurse; `
-#  Get-ChildItem -Exclude 'Microsoft.WindowsDesktop.App' -Path 'C:\Program Files\dotnet\shared' `
-# | Remove-Item -Force -Recurse
+Remove-Item 'C:\Users\ContainerAdministrator\AppData\Local\Temp\chocolatey' -Recurse -Force
