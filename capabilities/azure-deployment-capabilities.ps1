@@ -39,3 +39,8 @@ Write-Host 'TLS 1.1 has been disabled.'
 # Defaulting Your System to use TLS 1.2 for .NET Applications: https://www.inflectra.com/support/knowledgebase/kb510.aspx
 Set-ItemProperty -Path 'HKLM:\SOFTWARE\Wow6432Node\Microsoft\.NetFramework\v4.0.30319' -Name 'SchUseStrongCrypto' -Value '1' -Type DWord
 Set-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\.NetFramework\v4.0.30319' -Name 'SchUseStrongCrypto' -Value '1' -Type DWord
+
+
+# 90044-Allowed Null Session - Security Fix to Disable Null Session
+Set-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Control\LSA' -Name 'RestrictAnonymous' -Value '1' -Type DWord
+Set-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Services\LanmanServer\Parameters' -Name 'RestrictNullSessAccess' -Value '1' -Type DWord
