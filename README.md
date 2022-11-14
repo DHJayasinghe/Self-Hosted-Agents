@@ -4,6 +4,9 @@
 
 docker run -d -e AZP_URL=https://dev.azure.com/{ORGANIZATION} -e AZP_TOKEN={PERSONAL_ACCESS_TOKEN} -e AZP_AGENT_NAME={AGENT_NAME} --network "Default Switch" hasitha2kandy/dockeragent:latest
 
+Make sure PAT has Agent Pool Read & Execute Permission.
+![image](https://user-images.githubusercontent.com/26274468/201583530-b5b7dd0b-f3c5-4ade-ae76-5800ed24b00e.png)
+
 ## Capabilities
 1. azure-cli
 2. Azure powershell
