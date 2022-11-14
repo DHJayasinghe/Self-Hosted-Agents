@@ -2,7 +2,7 @@
 
 ## How to Run
 
-docker run -d -e AZP_URL=https://dev.azure.com/{ORGANIZATION} -e AZP_TOKEN={PERSONAL_ACCESS_TOKEN} -e AZP_AGENT_NAME={AGENT_NAME} hasitha2kandy/dockeragent:latest
+docker run -d -e AZP_URL=https://dev.azure.com/{ORGANIZATION} -e AZP_TOKEN={PERSONAL_ACCESS_TOKEN} -e AZP_AGENT_NAME={AGENT_NAME} --network "Default Switch" hasitha2kandy/dockeragent:latest
 
 ## Capabilities
 1. azure-cli
